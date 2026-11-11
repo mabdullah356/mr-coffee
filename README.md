@@ -1,16 +1,27 @@
-# React + Vite
+# Greenleaf Matcha
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React landing page for a matcha drink brand.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+```
 
-## React Compiler
+## Build and checks
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm run build
+npm run check:nosvg
+npm run lint
+```
 
-## Expanding the ESLint configuration
+## Customize
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Change the brand name in `src/config.js` (`BRAND_NAME`). The footer headline and oversized wordmark update with it.
+- Update the drink names and copy in the `products` array in `src/config.js`.
+- Adjust the color tokens at the top of `src/App.css`.
+- Main scenes are in `src/components/`: `Hero`, `Intro`, `ProductStack`, and `Footer`.
+
+The current artwork is drawn in CSS. See `ASSETS.md` and `DECISIONS.md` for the image-generation and dependency constraints from this environment.
