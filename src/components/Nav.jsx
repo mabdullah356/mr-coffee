@@ -1,7 +1,9 @@
+import brandMark from '../assets/images/brand/brand-mark.png'
+
 export default function Nav() {
   return (
     <header className="site-nav">
-      <a className="brand-symbol" href="#home" aria-label="Greenleaf home">g</a>
+      <a className="brand-symbol" href="#home" aria-label="Greenleaf home"><img src={brandMark} alt="" /></a>
       <nav className="nav-links" aria-label="Main navigation">
         <a className="active" href="#home">Home</a><a href="#drinks">Drinks</a><a href="#about">About</a><a href="#contact">Contact</a>
       </nav>
