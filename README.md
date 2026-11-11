@@ -24,4 +24,4 @@ npm run lint
 - Adjust the color tokens at the top of `src/App.css`.
 - Main scenes are in `src/components/`: `Hero`, `Intro`, `ProductStack`, and `Footer`.
 
-The current artwork is drawn in CSS. See `ASSETS.md` and `DECISIONS.md` for the image-generation and dependency constraints from this environment.
+Original raster artwork is generated locally with Pillow and NumPy (no API key needed). Install those Python packages with `python -m pip install pillow numpy`, then rebuild it with `python scripts/generate-art.py`. See `ASSETS.md` and `DECISIONS.md` for the asset list and motion implementation notes.
