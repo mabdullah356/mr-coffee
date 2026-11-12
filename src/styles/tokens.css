@@ -1,0 +1,20 @@
+:root {
+  --green-900: #29351e;
+  --green-950: #1a2117;
+  --green-800: #33432a;
+  --lime: #8dc93c;
+  --lime-soft: #a6e03a;
+  --cream: #fbf7eb;
+  --hazel-card: #f4f7eb;
+  --hazel-pill: #ecf0d0;
+  --berry: #b01a43;
+  --berry-soft: #f7e6ed;
+  --white: #ffffff;
+  --ink: #28311f;
+  --off-white: #f4f1e4;
+  --radius-card: 28px;
+  --font-display: 'Bagel Fat One', 'Arial Black', sans-serif;
+  --font-product: 'Chewy', 'Comic Sans MS', cursive;
+  --font-body: 'Inter Variable', 'Segoe UI', Arial, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

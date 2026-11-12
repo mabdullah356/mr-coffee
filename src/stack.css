@@ -1,6 +1,0 @@
-.product-grid{display:block}
-.product-card{position:sticky;top:14vh;margin-bottom:23vh;transform-origin:center top}
-.product-card:last-child{margin-bottom:0}
-.product-card:first-child.is-visible{transform:scale(var(--stack-scale,1))!important;opacity:var(--stack-opacity,1)!important}
-@media(max-width:760px){.product-grid{display:grid;gap:18px}.product-card,.product-card:first-child.is-visible{position:relative;top:auto;margin-bottom:0;transform:none!important;opacity:1!important}}
-@media(prefers-reduced-motion:reduce){.product-card,.product-card:first-child.is-visible{position:relative;top:auto;margin-bottom:0;transform:none!important;opacity:1!important}}
