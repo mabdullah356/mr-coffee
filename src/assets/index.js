@@ -6,6 +6,7 @@ import waveEdge from './images/wave/wave-edge.png'
 import whiskBowl from './images/preloader/whisk-bowl.png'
 import drinkHazelnut from './images/products/drink-hazelnut.webp'
 import drinkStrawberry from './images/products/drink-strawberry.webp'
+import coffeePour from './images/coffee/coffee-pour.webp'
 import strawberryWhole from './images/fruit/strawberry-whole.webp'
 import strawberryCluster from './images/fruit/strawberry-cluster.webp'
 import stickerLabel from './images/stickers/sticker-label.png'
@@ -32,6 +33,7 @@ export {
   whiskBowl,
   drinkHazelnut,
   drinkStrawberry,
+  coffeePour,
   strawberryWhole,
   strawberryCluster,
   stickerLabel,

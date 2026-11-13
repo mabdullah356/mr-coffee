@@ -7,6 +7,7 @@ import CustomCursor from './components/CustomCursor.jsx'
 import Hero from './components/Hero.jsx'
 import Intro from './components/Intro.jsx'
 import ProductStack from './components/ProductStack.jsx'
+import CoffeeRitual from './components/CoffeeRitual.jsx'
 import Footer from './components/Footer.jsx'
 import useSmoothScroll from './hooks/useSmoothScroll.js'
 import usePrefersReducedMotion from './hooks/usePrefersReducedMotion.js'
@@ -50,6 +51,7 @@ export default function App() {
         <Hero ready={revealed} reducedMotion={reducedMotion} />
         <Intro reducedMotion={reducedMotion} />
         <ProductStack reducedMotion={reducedMotion} />
+        <CoffeeRitual reducedMotion={reducedMotion} />
         <Footer reducedMotion={reducedMotion} />
       </main>
     </>

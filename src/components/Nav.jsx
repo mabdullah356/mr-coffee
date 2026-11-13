@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { brandMark, arrowDark } from '../assets/index.js'
 
-const sectionOrder = ['home', 'about', 'drinks', 'contact']
+const sectionOrder = ['home', 'about', 'drinks', 'coffee', 'contact']
 
 export default function Nav({ ready, reducedMotion }) {
   const rootRef = useRef(null)
@@ -76,6 +76,7 @@ export default function Nav({ ready, reducedMotion }) {
       <nav className="nav-links" aria-label="Main navigation">
         <a className="active" href="#home" aria-current="page">Home</a>
         <a href="#drinks">Drinks</a>
+        <a href="#coffee">Coffee</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>

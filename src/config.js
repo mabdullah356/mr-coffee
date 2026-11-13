@@ -23,7 +23,7 @@ export const introLines = [
 ]
 
 export const footerLinks = [
-  { title: 'Quick links', links: [['About', '#about'], ['Services', '#drinks']] },
+  { title: 'Quick links', links: [['About', '#about'], ['Services', '#drinks'], ['Coffee ritual', '#coffee']] },
   { title: 'Divisions', links: [['Logistics', '#contact'], ['Logistics', '#contact'], ['Media', '#contact']] },
   { title: 'Legal', links: [['Privacy policy', '#contact'], ['Terms', '#contact']] },
 ]
