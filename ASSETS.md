@@ -1,6 +1,6 @@
 # Assets
 
-The hero, drink panels, and strawberry accents use real-object photography stored locally as WebP. Other decorative artwork, UI icons, and stickers are raster PNGs generated with Pillow and NumPy. The site does not use SVGs.
+The hero, drink panels, coffee ritual, and strawberry accents use real-object photography stored locally as WebP. Other decorative artwork, UI icons, and stickers are raster PNGs generated with Pillow and NumPy. The site does not use SVGs.
 
 ## Rebuild
 
@@ -21,6 +21,7 @@ python scripts/generate-icons.py
 | `src/assets/images/wave/wave-edge.png` | 2400x420 | Transparent wave crest tiled three times in the transition. |
 | `src/assets/images/products/drink-hazelnut.webp` | 1000x1500 | Photograph of a glass iced matcha latte, used in the hazelnut product panel. |
 | `src/assets/images/products/drink-strawberry.webp` | 1000x1500 | Photograph of a layered strawberry matcha latte. |
+| `src/assets/images/coffee/coffee-pour.webp` | 1200x801 | Photograph of a barista pouring steamed milk into coffee for the Coffee Ritual section. |
 | `src/assets/images/fruit/strawberry-whole.webp` | 700x700 | Close-up strawberry photograph used as a circular product-card accent. |
 | `src/assets/images/fruit/strawberry-cluster.webp` | 700x700 | Close-up strawberry cluster photograph used as a circular product-card accent. |
 | `src/assets/images/footer/matcha-powder.webp` | 1500x950 | Low-key matcha powder mound. |
@@ -28,13 +29,14 @@ python scripts/generate-icons.py
 
 ## Photo sources
 
-These photographs are served from local WebP files and are used under the [Unsplash License](https://unsplash.com/license), which permits free commercial and non-commercial use; attribution is appreciated but not required.
+These photographs are served from local WebP files. Matcha and strawberry photos use the [Unsplash License](https://unsplash.com/license); the coffee photo uses the [Pexels License](https://www.pexels.com/license/).
 
 | Asset | Original photo |
 | --- | --- |
 | `hero-matcha-hand.webp` | [Unsplash photo 1658144176998-20ee07642ff6](https://images.unsplash.com/photo-1658144176998-20ee07642ff6) |
 | `drink-hazelnut.webp` | [Unsplash photo 1717603545758-88cc454db69b](https://images.unsplash.com/photo-1717603545758-88cc454db69b) |
 | `drink-strawberry.webp` | [Unsplash photo 1749104028327-a33087ea4f47](https://images.unsplash.com/photo-1749104028327-a33087ea4f47) |
+| `coffee-pour.webp` | [Pexels photo 302899](https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg) |
 | `strawberry-whole.webp` | [Unsplash photo 1601004890684-d8cbf643f5f2](https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2) |
 | `strawberry-cluster.webp` | [Unsplash photo 1464965911861-746a04b4bca6](https://images.unsplash.com/photo-1464965911861-746a04b4bca6) |
 

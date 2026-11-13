@@ -29,7 +29,7 @@ npm run check:nosvg
 
 ## Assets
 
-Decorative raster artwork is generated locally with Pillow and NumPy (no API key needed). Install those Python packages with `python -m pip install pillow numpy`, then rebuild it with `python scripts/generate-art.py`. The hero and product panels, including the strawberry accents, use local WebP photographs; see `ASSETS.md` for their sources and license.
+Decorative raster artwork is generated locally with Pillow and NumPy (no API key needed). Install those Python packages with `python -m pip install pillow numpy`, then rebuild it with `python scripts/generate-art.py`. The hero, product panels, strawberry accents, and Coffee Ritual section use local WebP photographs; see `ASSETS.md` for their sources and licenses.
 
 The small raster arrow icons used by the nav, hero stamp and product cards are generated separately:
 
