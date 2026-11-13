@@ -1,6 +1,5 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { BRAND_NAME, footerLinks } from '../config.js'
 import { matchaPowder, iconFacebook, iconInstagram, iconYoutube, iconX } from '../assets/index.js'
@@ -18,46 +17,60 @@ export default function Footer({ reducedMotion }) {
   const rootRef = useRef(null)
   const letters = [...BRAND_NAME]
 
-  useGSAP(() => {
-    if (reducedMotion) return
-    gsap.fromTo('.footer-letter',
+  useEffect(() => {
+    if (reducedMotion) return undefined
+    const root = rootRef.current
+    if (!root) return undefined
+    const tweens = []
+
+    tweens.push(gsap.fromTo(root.querySelectorAll('.footer-letter'),
       { yPercent: 112 },
       {
         yPercent: 0,
         ease: 'none',
         stagger: 0.04,
         scrollTrigger: {
-          trigger: rootRef.current,
-          start: 'top 86%',
+          trigger: root,
+          start: 'top 90%',
           end: 'bottom bottom',
           scrub: 1,
         },
       },
-    )
-    gsap.fromTo('.footer-dot', { scale: 0 }, {
+    ))
+    tweens.push(gsap.fromTo(root.querySelector('.footer-dot'), { scale: 0 }, {
       scale: 1,
       duration: 0.9,
       ease: 'back.out(3)',
-      scrollTrigger: { trigger: rootRef.current, start: 'top 55%', once: true },
-    })
-    gsap.fromTo('.footer-powder', { yPercent: 6 }, {
+      scrollTrigger: { trigger: root, start: 'top 58%', once: true },
+    }))
+    tweens.push(gsap.fromTo(root.querySelector('.footer-powder'), { yPercent: 6 }, {
       yPercent: 0,
       ease: 'none',
-      scrollTrigger: { trigger: rootRef.current, start: 'top bottom', end: 'bottom bottom', scrub: 1 },
-    })
-    gsap.from('.footer-reveal', {
-      y: 38,
-      opacity: 0,
-      duration: 1,
-      ease: 'power4.out',
-      stagger: 0.08,
-      scrollTrigger: { trigger: rootRef.current, start: 'top 78%', once: true },
-    })
-  }, { scope: rootRef, dependencies: [reducedMotion] })
+      scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom bottom', scrub: 1 },
+    }))
+    tweens.push(gsap.fromTo(root.querySelectorAll('.footer-reveal'),
+      { y: 38, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: 'power4.out',
+        stagger: 0.08,
+        scrollTrigger: { trigger: root, start: 'top 80%', once: true },
+      },
+    ))
+
+    return () => {
+      tweens.forEach((tween) => {
+        tween.scrollTrigger?.kill()
+        tween.kill()
+      })
+    }
+  }, [reducedMotion])
 
   return (
     <footer className="footer" id="contact" ref={rootRef}>
-      <img className="footer-powder" src={matchaPowder} alt="" width="1800" height="1100" />
+      <img className="footer-powder" src={matchaPowder} alt="" width="1500" height="950" decoding="async" />
       <div className="footer-top">
         <div className="footer-lead footer-reveal">
           <p className="footer-kicker">A better daily ritual</p>
@@ -87,7 +100,7 @@ export default function Footer({ reducedMotion }) {
           <div className="social-row">
             {socials.map((social) => (
               <a className="social-button" href={social.href} key={social.name} aria-label={social.name}>
-                <img src={social.icon} alt="" width="24" height="24" />
+                <img src={social.icon} alt="" width="20" height="20" decoding="async" />
               </a>
             ))}
           </div>
@@ -97,7 +110,7 @@ export default function Footer({ reducedMotion }) {
       <div className="footer-word-wrap">
         <h2 className="footer-word" aria-label={BRAND_NAME}>
           {letters.map((letter, index) => (
-            <span className="footer-letter-mask" key={`${letter}-${index}`}>
+            <span className="footer-letter-mask" key={`${letter}-${index}`} aria-hidden="true">
               <span className="footer-letter">{letter}</span>
             </span>
           ))}

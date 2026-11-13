@@ -18,8 +18,10 @@ export default function useSmoothScroll(enabled = true) {
       easing: easeOutExpo,
       smoothWheel: true,
       syncTouch: false,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.4,
+      anchors: true,
+      autoRaf: false,
     })
     lenisRef.current = lenis
     lenis.stop()

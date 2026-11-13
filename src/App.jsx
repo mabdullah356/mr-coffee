@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Preloader from './components/Preloader.jsx'
@@ -16,9 +16,14 @@ gsap.registerPlugin(ScrollTrigger)
 export default function App() {
   const reducedMotion = usePrefersReducedMotion()
   const lenisRef = useSmoothScroll(!reducedMotion)
+  const [revealed, setRevealed] = useState(false)
   const [ready, setReady] = useState(false)
 
+  const handleReveal = useCallback(() => setRevealed(true), [])
+  const handleReady = useCallback(() => setReady(true), [])
+
   useEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'
     document.documentElement.classList.add('is-loading')
     return () => document.documentElement.classList.remove('is-loading')
   }, [])
@@ -26,21 +31,23 @@ export default function App() {
   useEffect(() => {
     if (!ready) return undefined
     document.documentElement.classList.remove('is-loading')
+    window.scrollTo(0, 0)
     lenisRef.current?.start()
+    lenisRef.current?.scrollTo(0, { immediate: true })
+
     let frame = requestAnimationFrame(() => ScrollTrigger.refresh())
-    document.fonts?.ready?.then(() => {
-      ScrollTrigger.refresh()
-    })
+    const handleFonts = () => ScrollTrigger.refresh()
+    document.fonts?.ready?.then(handleFonts)
     return () => cancelAnimationFrame(frame)
   }, [ready, lenisRef])
 
   return (
     <>
-      <Preloader onComplete={() => setReady(true)} reducedMotion={reducedMotion} />
-      <Nav ready={ready} reducedMotion={reducedMotion} />
+      <Preloader onReveal={handleReveal} onComplete={handleReady} reducedMotion={reducedMotion} />
+      <Nav ready={revealed} reducedMotion={reducedMotion} />
       <CustomCursor enabled={!reducedMotion} />
       <main className={ready ? 'page-ready' : ''}>
-        <Hero ready={ready} reducedMotion={reducedMotion} />
+        <Hero ready={revealed} reducedMotion={reducedMotion} />
         <Intro reducedMotion={reducedMotion} />
         <ProductStack reducedMotion={reducedMotion} />
         <Footer reducedMotion={reducedMotion} />
