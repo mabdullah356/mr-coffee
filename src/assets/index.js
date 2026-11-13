@@ -1,17 +1,13 @@
 import brandMark from './images/brand/brand-mark.png'
 import cursorMatcha from './images/brand/cursor-matcha.png'
-import heroSky from './images/hero/hero-sky.webp'
-import heroCups from './images/hero/hero-cups.webp'
+import heroPhoto from './images/hero/hero-matcha-hand.webp'
 import heroHill from './images/hero/hero-hill.png'
 import waveEdge from './images/wave/wave-edge.png'
 import whiskBowl from './images/preloader/whisk-bowl.png'
-import drinkHazelnut from './images/products/drink-hazelnut.png'
-import drinkStrawberry from './images/products/drink-strawberry.png'
-import leafA from './images/leaves/leaf-a.png'
-import leafB from './images/leaves/leaf-b.png'
-import leafC from './images/leaves/leaf-c.png'
-import strawberryA from './images/fruit/strawberry-a.png'
-import strawberryB from './images/fruit/strawberry-b.png'
+import drinkHazelnut from './images/products/drink-hazelnut.webp'
+import drinkStrawberry from './images/products/drink-strawberry.webp'
+import strawberryWhole from './images/fruit/strawberry-whole.webp'
+import strawberryCluster from './images/fruit/strawberry-cluster.webp'
 import stickerLabel from './images/stickers/sticker-label.png'
 import stickerCat from './images/stickers/sticker-cat.png'
 import stickerBow from './images/stickers/sticker-bow.png'
@@ -22,22 +18,22 @@ import iconFacebook from './images/social/icon-facebook.png'
 import iconInstagram from './images/social/icon-instagram.png'
 import iconYoutube from './images/social/icon-youtube.png'
 import iconX from './images/social/icon-x.png'
+import arrowWhite from './images/icons/arrow-white.png'
+import arrowDark from './images/icons/arrow-dark.png'
+import arrowBerry from './images/icons/arrow-berry.png'
+import arrowLime from './images/icons/arrow-lime.png'
 
 export {
   brandMark,
   cursorMatcha,
-  heroSky,
-  heroCups,
+  heroPhoto,
   heroHill,
   waveEdge,
   whiskBowl,
   drinkHazelnut,
   drinkStrawberry,
-  leafA,
-  leafB,
-  leafC,
-  strawberryA,
-  strawberryB,
+  strawberryWhole,
+  strawberryCluster,
   stickerLabel,
   stickerCat,
   stickerBow,
@@ -48,23 +44,23 @@ export {
   iconInstagram,
   iconYoutube,
   iconX,
+  arrowWhite,
+  arrowDark,
+  arrowBerry,
+  arrowLime,
 }
 
 export const preloadImages = [
   brandMark,
   cursorMatcha,
-  heroSky,
-  heroCups,
+  heroPhoto,
   heroHill,
   waveEdge,
   whiskBowl,
   drinkHazelnut,
   drinkStrawberry,
-  leafA,
-  leafB,
-  leafC,
-  strawberryA,
-  strawberryB,
+  strawberryWhole,
+  strawberryCluster,
   stickerLabel,
   stickerCat,
   stickerBow,
@@ -75,4 +71,8 @@ export const preloadImages = [
   iconInstagram,
   iconYoutube,
   iconX,
+  arrowWhite,
+  arrowDark,
+  arrowBerry,
+  arrowLime,
 ]

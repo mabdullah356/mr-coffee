@@ -1,6 +1,6 @@
-"""Generate the extra raster artwork used by the page.
+"""Generate decorative raster artwork used by the page.
 
-Everything is painted locally with Pillow. No SVG, no stock images, no network.
+Photographic hero and drink assets are maintained separately. No SVG output.
 Run: python scripts/generate-assets.py
 """
 from pathlib import Path
@@ -515,71 +515,6 @@ def social_icons():
     output(img, "icon-x.png")
 
 
-def hero_cups():
-    if not (ROOT / "products" / "drink-hazelnut.png").exists():
-        return
-    w, h = 2200, 1500
-    canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    hazel = Image.open(ROOT / "products" / "drink-hazelnut.png").convert("RGBA")
-    berry = Image.open(ROOT / "products" / "drink-strawberry.png").convert("RGBA")
-
-    def sized(im, height):
-        return im.resize((int(im.width * height / im.height), height), Image.Resampling.LANCZOS)
-
-    hazel = sized(hazel, 1080).rotate(-7, expand=True, resample=Image.Resampling.BICUBIC)
-    berry = sized(berry, 1020).rotate(7, expand=True, resample=Image.Resampling.BICUBIC)
-
-    # arms / hands painted behind the cups, reaching up from the bottom edge
-    arms = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    ad = ImageDraw.Draw(arms)
-    skin_dark = (191, 126, 88, 255)
-    skin = (221, 160, 117, 255)
-    skin_light = (238, 187, 146, 255)
-    for sign in (-1, 1):
-        cx = w * (.5 + sign * .29)
-        top_x = cx - sign * 40
-        pts = [(cx - 210, h + 40), (cx + 210, h + 40), (top_x + 118, 860), (top_x - 118, 860)]
-        ad.polygon(pts, fill=skin)
-        ad.ellipse((top_x - 118, 760, top_x + 118, 1040), fill=skin)
-        ad.ellipse((cx - 175, h - 260, cx + 235, h + 80), fill=skin)
-        # inner shading
-        shade = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-        sd = ImageDraw.Draw(shade)
-        sd.polygon([(cx - 210, h + 40), (cx - 140, h + 40), (top_x - 60, 900), (top_x - 105, 880)], fill=(156, 96, 65, 80))
-        sd.ellipse((top_x - 118 + 70, 790, top_x + 118 + 70, 1030), fill=(247, 206, 172, 90))
-        shade = shade.filter(ImageFilter.GaussianBlur(16))
-        arms = Image.alpha_composite(arms, shade)
-    # finger silhouettes with mint nails, drawn behind the cups (they peek around the sides)
-    for sign in (-1, 1):
-        cx = w * (.5 + sign * .29)
-        for i in range(4):
-            fx = cx + sign * (105 + i * 24)
-            fy = 820 + i * 18
-            ad.rounded_rectangle((fx - 34, fy, fx + 34, fy + 190), radius=34, fill=skin_light)
-            ad.ellipse((fx - 27, fy - 8, fx + 27, fy + 58), fill=(181, 226, 196, 255))
-    canvas = Image.alpha_composite(canvas, arms)
-
-    canvas.alpha_composite(hazel, (int(w * .19 - hazel.width / 2 + 90), int(h * .06)))
-    canvas.alpha_composite(berry, (int(w * .80 - berry.width / 2 - 70), int(h * .09)))
-
-    # front fingers gripping the cups + mint nails
-    front = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    fd = ImageDraw.Draw(front)
-    lx, ly = w * .305, 930
-    rx, ry = w * .695, 930
-    for i in range(4):
-        fd.rounded_rectangle((lx - 42 + i * 26, ly + i * 13, lx + 20 + i * 26, ly + 150 + i * 13), radius=38, fill=skin_light)
-        fd.ellipse((lx - 30 + i * 26, ly + 96 + i * 13, lx + 8 + i * 26, ly + 136 + i * 13), fill=(181, 226, 196, 255))
-    for i in range(4):
-        fd.rounded_rectangle((rx - 75 - i * 26, ry + i * 13, rx - 13 - i * 26, ry + 150 + i * 13), radius=38, fill=skin_light)
-        fd.ellipse((rx - 63 - i * 26, ry + 96 + i * 13, rx - 25 - i * 26, ry + 136 + i * 13), fill=(181, 226, 196, 255))
-    front = front.filter(ImageFilter.GaussianBlur(0.6))
-    canvas = Image.alpha_composite(canvas, front)
-    out = canvas.resize((1800, 1227), Image.Resampling.LANCZOS)
-    out.save(ensure("hero") / "hero-cups.webp", "WEBP", quality=86, method=2)
-    print(f"wrote hero-cups.webp {out.width}x{out.height}")
-
-
 def verify():
     solid_bottom = {"hero-hill.png", "wave-edge.png"}
     for path in [*ROOT.rglob("*.png"), *ROOT.rglob("*.webp")]:
@@ -605,13 +540,10 @@ if __name__ == "__main__":
     wave()
     whisk()
     cursor()
-    leaves()
-    strawberry()
     sticker_cat()
     sticker_bow()
     sticker_gummy()
     sticker_matcha()
     sticker_label()
     social_icons()
-    hero_cups()
     verify()
