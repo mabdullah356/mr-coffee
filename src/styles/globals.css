@@ -9,6 +9,10 @@ html {
   scroll-behavior: auto;
 }
 
+html.is-loading {
+  background: var(--green-900);
+}
+
 html.lenis,
 html.lenis body {
   height: auto;
@@ -215,8 +219,22 @@ html.has-custom-cursor button {
   transition: transform 0.4s var(--ease-out);
 }
 
-.nav-cta:hover i {
+.nav-cta i img {
+  display: block;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.nav-cta:hover i,
+.nav-cta:focus-visible i {
   transform: rotate(45deg);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--lime-soft);
+  outline-offset: 3px;
 }
 
 /* -------------------------------------------------------------------- hero */
@@ -225,25 +243,36 @@ html.has-custom-cursor button {
   position: relative;
   height: 100svh;
   background: var(--green-900);
+  z-index: 1;
 }
 
 .hero {
   position: relative;
-  height: 100svh;
-  min-height: 640px;
+  height: 100%;
+  min-height: 0;
   overflow: hidden;
+  background: var(--green-900);
   isolation: isolate;
+}
+
+.hero-sky-wrap {
+  position: absolute;
+  inset: -6%;
+  z-index: 0;
+  overflow: hidden;
+  transform-origin: 50% 62%;
+  will-change: transform;
 }
 
 .hero-sky {
   position: absolute;
   inset: 0;
-  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 45%;
-  transform: scale(1.25);
+  object-position: center 54%;
+  transform-origin: 50% 55%;
+  filter: saturate(0.9) contrast(1.02) brightness(0.82);
   will-change: transform;
 }
 
@@ -253,8 +282,8 @@ html.has-custom-cursor button {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(13, 40, 58, 0.2), transparent 28%, transparent 76%, rgba(12, 33, 20, 0.16)),
-    radial-gradient(ellipse at 48% 82%, transparent 40%, rgba(18, 45, 30, 0.1));
+    linear-gradient(180deg, rgba(10, 20, 18, 0.3), rgba(10, 20, 18, 0.04) 34%, rgba(10, 20, 18, 0.08) 68%, rgba(10, 20, 18, 0.42)),
+    linear-gradient(90deg, rgba(10, 20, 18, 0.14), transparent 72%);
 }
 
 .hero-eyebrow {
@@ -268,7 +297,8 @@ html.has-custom-cursor button {
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.9;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
 .hero-word-wrap {
@@ -286,48 +316,14 @@ html.has-custom-cursor button {
   letter-spacing: -0.045em;
   white-space: nowrap;
   transform-origin: 0 0;
-  transform: scale(0.12);
   opacity: 0;
-  text-shadow: 0 4px 26px rgba(20, 65, 90, 0.22);
+  text-shadow: 0 4px 26px rgba(10, 20, 18, 0.28);
   will-change: transform, opacity;
 }
 
 .hero-word em {
   color: var(--lime);
   font-style: normal;
-}
-
-.hero-cups-layer {
-  position: absolute;
-  z-index: 3;
-  right: 0;
-  bottom: -1%;
-  left: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 84%;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.hero-cups {
-  width: min(61vw, 1040px);
-  will-change: transform;
-}
-
-.hero-cups-inner {
-  transform: scale(0.5) translateY(18%);
-  transform-origin: 50% 100%;
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-.hero-cups-img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(16px 30px 32px rgba(18, 45, 36, 0.22));
-  will-change: transform;
 }
 
 .hero-hill {
@@ -338,7 +334,6 @@ html.has-custom-cursor button {
   left: 0;
   height: 18vh;
   overflow: hidden;
-  transform: translateY(35%);
   opacity: 0;
   will-change: transform, opacity;
 }
@@ -425,6 +420,14 @@ html.has-custom-cursor button {
   font-weight: 400;
 }
 
+.stamp-arrow {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 5px auto 0;
+  object-fit: contain;
+}
+
 /* -------------------------------------------------------------- wave + hill */
 
 .wave-cover {
@@ -434,7 +437,6 @@ html.has-custom-cursor button {
   left: 0;
   width: 100%;
   height: 112%;
-  transform: translate3d(0, 100%, 0);
   pointer-events: none;
   will-change: transform;
 }
@@ -560,7 +562,8 @@ html.has-custom-cursor button {
   height: 1.75em;
   vertical-align: middle;
   transform-origin: 50% 60%;
-  will-change: transform;
+  opacity: 0;
+  will-change: transform, opacity;
   pointer-events: none;
 }
 
@@ -696,6 +699,31 @@ html.has-custom-cursor button {
   background: var(--hazel-card);
 }
 
+.product-art::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(30, 36, 23, 0.02), transparent 42%, rgba(30, 36, 23, 0.08));
+  pointer-events: none;
+}
+
+.product-photo-wrap {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.product-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  will-change: transform;
+}
+
 .product-berry .product-art {
   order: 2;
   background: var(--berry-soft);
@@ -705,82 +733,39 @@ html.has-custom-cursor button {
   order: 1;
 }
 
-.product-cup-img {
-  position: relative;
-  z-index: 2;
-  width: auto;
-  max-width: 72%;
-  height: 82%;
-  object-fit: contain;
-  filter: drop-shadow(18px 24px 24px rgba(0, 0, 0, 0.18));
-  will-change: transform;
-}
-
-.art-glow {
+.fruit-anchor {
   position: absolute;
-  z-index: 1;
-  bottom: 7%;
-  left: 50%;
-  width: 48%;
-  height: 9%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(41, 53, 30, 0.18), transparent 70%);
-  filter: blur(6px);
-  transform: translateX(-50%);
-}
-
-.art-leaf {
-  position: absolute;
-  z-index: 1;
+  z-index: 3;
+  display: block;
   width: 27%;
-  height: 34%;
-  object-fit: contain;
-  opacity: 0;
-  filter: saturate(0.82);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: #f0edb5;
+  box-shadow: 0 12px 24px rgba(40, 30, 20, 0.2);
   pointer-events: none;
-}
-
-.leaf-one {
-  top: 2%;
-  right: 4%;
-  rotate: 18deg;
-}
-
-.leaf-two {
-  top: 31%;
-  left: 1%;
-  width: 24%;
-  rotate: -12deg;
-}
-
-.leaf-three {
-  right: 5%;
-  bottom: 2%;
-  width: 22%;
-  rotate: -28deg;
+  will-change: transform, opacity;
 }
 
 .art-fruit {
-  position: absolute;
-  z-index: 3;
-  width: 27%;
-  height: auto;
-  filter: drop-shadow(0 14px 20px rgba(90, 20, 40, 0.18));
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   pointer-events: none;
   will-change: transform;
 }
 
 .fruit-one {
-  top: 1%;
-  left: -2%;
-  rotate: -10deg;
+  top: 2%;
+  left: 2%;
 }
 
 .fruit-two {
-  right: -2%;
-  bottom: -2%;
+  right: 2%;
+  bottom: 2%;
   width: 30%;
-  rotate: 12deg;
 }
 
 .product-copy {
@@ -888,12 +873,16 @@ html.has-custom-cursor button {
   background: var(--berry);
 }
 
-.pill-button i {
-  font-style: normal;
+.pill-button .icon-arrow {
+  display: block;
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
   transition: transform 0.4s var(--ease-out);
 }
 
-.pill-button:hover i {
+.pill-button:hover .icon-arrow,
+.pill-button:focus-visible .icon-arrow {
   transform: rotate(45deg);
 }
 
@@ -917,6 +906,13 @@ html.has-custom-cursor button {
   background: #2b3720;
   font-size: 16px;
   transition: transform 0.4s var(--ease-out);
+}
+
+.circle-arrow img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .product-berry .circle-arrow {
@@ -1165,19 +1161,11 @@ html.has-custom-cursor button {
   }
 
   .hero-word {
-    font-size: 38vw;
+    font-size: 28vw;
   }
 
   .hero-word-wrap {
     top: 24vh;
-  }
-
-  .hero-cups-layer {
-    height: 76%;
-  }
-
-  .hero-cups {
-    width: min(92vw, 760px);
   }
 
   .hero-stamp {
@@ -1262,15 +1250,11 @@ html.has-custom-cursor button {
   }
 
   .product-art {
-    height: min(54vh, 430px);
-  }
-
-  .product-cup-img {
-    height: 82%;
+    height: clamp(280px, 42vw, 430px);
   }
 
   .product-copy {
-    padding: 26px 22px 24px;
+    padding: 26px clamp(20px, 4vw, 32px) 24px;
   }
 
   .product-copy h3 {
@@ -1330,11 +1314,11 @@ html.has-custom-cursor button {
   }
 
   .hero {
-    min-height: 680px;
+    min-height: 0;
   }
 
   .hero-word {
-    font-size: 38vw;
+    font-size: 28vw;
   }
 
   .hero-word-wrap {
@@ -1346,14 +1330,6 @@ html.has-custom-cursor button {
     top: 20%;
     left: 6vw;
     font-size: 8px;
-  }
-
-  .hero-cups-layer {
-    height: 70%;
-  }
-
-  .hero-cups {
-    width: 94vw;
   }
 
   .hero-hill {
@@ -1411,18 +1387,14 @@ html.has-custom-cursor button {
 
   .product-card,
   .product-berry {
-    width: 94vw;
+    width: min(94vw, 100%);
     padding: 9px;
     border-radius: 22px;
   }
 
   .product-art {
-    height: 380px;
+    height: clamp(250px, 76vw, 320px);
     border-radius: 16px;
-  }
-
-  .product-cup-img {
-    height: 80%;
   }
 
   .product-copy {
@@ -1490,15 +1462,21 @@ html.has-custom-cursor button {
 
   .site-nav > *,
   .hero-word,
-  .hero-cups-inner,
   .hero-hill,
+  .hero-eyebrow,
   .scroll-cue,
-  .hero-stamp {
+  .hero-stamp,
+  .intro-sticker {
     opacity: 1 !important;
     transform: none !important;
   }
 
   .hero-sky {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .hero-sky-wrap {
     transform: none !important;
   }
 
@@ -1510,9 +1488,10 @@ html.has-custom-cursor button {
     display: none;
   }
 
-  .art-leaf,
-  .art-fruit {
+  .art-fruit,
+  .fruit-anchor {
     opacity: 1 !important;
+    transform: none !important;
   }
 
   .product-pin {
